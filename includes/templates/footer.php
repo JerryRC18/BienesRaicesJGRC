@@ -11,6 +11,6 @@
         <p class="copyright">Derechos reservados JGRC <?php echo date ('Y') ?></p>
 </footer>
 
-    <script src="build/js/bundle.min.js"></script>
+    <script src="/build/js/bundle.min.js"></script>
 </body>
 </html>
