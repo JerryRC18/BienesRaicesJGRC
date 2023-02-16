@@ -69,8 +69,8 @@
             $errores[] = "Debes agregar una imagen";
         }
         //Validar por tamaño
-        $medida = 1000 * 100;
-        if($imagen > $medida){
+        $medida = 1000 * 1000;
+        if($imagen['size'] > $medida){
             $errores[] = "La imagen es muy pesada";
         }
 
@@ -81,9 +81,24 @@
 
         //Revisar que el arreglo de errores este vacio.
         if(empty($errores)){
+
+            //Subida de archivos 
+
+            //Crear una carpeta
+            $carpetaImagenes = '../../imagenes/';
+
+            if(!is_dir($carpetaImagenes)){
+                mkdir($carpetaImagenes);
+            }
+
+            //Generar un nombre único
+            $nombreImagen = md5( uniqid( rand(), true ) ) . ".jpg";
+             //Subir imagen
+            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen );
+            
              //Insertar en la base de datos
-            $query = "INSERT INTO propiedades(titulo, precio, descripcion, habitaciones, wc, estacionamiento, creado, vendedores_id)
-            VALUES ('$titulo', '$precio', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$creado', '$vendedores_id')";
+            $query = "INSERT INTO propiedades(titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento, creado, vendedores_id)
+            VALUES ('$titulo', '$precio', '$nombreImagen', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$creado', '$vendedores_id')";
         
             //echo $query;
 
@@ -91,7 +106,7 @@
 
             if($resultado){
                 //Redireccionar al usuario 
-                header("Location: /admin"); //Sólo funciona si no hay nada de HTML previo
+                header('Location: /admin?resultado=1'); //Sólo funciona si no hay nada de HTML previo
             } 
         }
         
