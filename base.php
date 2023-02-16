@@ -4,7 +4,7 @@
     incluirTemplate('header');
 ?>
 
-    <main class="contenedor">
+    <main class="contenedor seccion">
         <h1>Título Página</h1>
     </main>
     
