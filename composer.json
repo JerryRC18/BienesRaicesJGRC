@@ -1,0 +1,17 @@
+{
+    "name": "jesus/bienes-raices-jgrc",
+    "description": "Creando un proyecto con programación orientada a objetos",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Gerardo",
+            "email": "jesusgrobles9@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\" : "./classes"
+        }
+    }
+}

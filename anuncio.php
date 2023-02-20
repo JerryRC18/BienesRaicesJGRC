@@ -7,8 +7,9 @@
         header('Location: /');
     }
 
+    require 'includes/app.php';
     //Importar la conexión
-    require 'includes/config/database.php'; //relativo al documento que lo manda llamar
+    //require 'includes/config/database.php'; //relativo al documento que lo manda llamar
     $db = conectarDB();
     //Consultar
     $query = "SELECT * FROM propiedades WHERE id = $id";
@@ -20,8 +21,6 @@
     }
     
     $propiedad = mysqli_fetch_assoc($resultado);
-
-    require 'includes/funciones.php';
 
     incluirTemplate('header');
 ?>

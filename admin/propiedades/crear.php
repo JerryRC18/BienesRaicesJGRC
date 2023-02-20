@@ -1,12 +1,11 @@
 <?php
-    require '../../includes/funciones.php';
-    $auth = estaAutenticado();
+    require '../../includes/app.php';
 
-    if(!$auth){
-        header('Location: /');
-    }
+    use App\Propiedad;
 
-    require '../../includes/config/database.php';
+    estaAutenticado();
+
+
     $db = conectarDB();
 
     //Consultar bd
@@ -27,6 +26,11 @@
 
     //Ejecutar el código después de que el usuario envía el formulario.
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        
+        $propiedad = new Propiedad($_POST);
+
+        $propiedad->guardar();
+        debuguear($propiedad);
         // echo "<pre>";
         // var_dump($_POST);
         // echo "</pre>";
